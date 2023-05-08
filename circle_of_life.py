@@ -18,3 +18,4 @@ class CircleOfLife:
 if __name__ == '__main__':
     safari = CircleOfLife(5,5,2)
     print('HI')
+
