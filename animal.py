@@ -1,15 +1,15 @@
 class Animal:
-    def __init__(self,x,y):
+    def __init__(self, x, y):
         self.x = x
         self.y = y
         self.age = 0
-    
+
     def move(self, direction):
-        print(f'moving to {direction}. <<< NOT IMPLEMNETED YET >>>')
+        print(f'moving to {direction}.')
 
     def breed(self, x, y):
-        return Animal(x,y)
-
+        return Animal(x, y)
+    
 class Zebra(Animal):
     def move(self, occupany_grid):
         print('<<< NOT IMPLEMENTED >>>')
