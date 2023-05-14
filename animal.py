@@ -17,7 +17,10 @@ class Zebra(Animal):
         print('<<< NOT IMPLEMENTED >>>')
 
     def breed(self, x, y):
-        print('<<< NOT IMPLEMENTED >>>')
+        if self.age == 3:
+            Zebra()
+        else:
+            pass
 
 class Lion(Animal):
     def move(self, occupancy_grid):
