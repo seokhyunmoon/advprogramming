@@ -11,6 +11,8 @@ class CircleOfLife:
                           for _ in range(world_size)]
         print_TODO('get random empty coordinates')
 
+        
+
         self.zebras = [Animal(0, 0) for _ in range(num_zebras)]
         self.lions = [Animal(0, 0) for _ in range(num_lions)]
 
@@ -23,8 +25,7 @@ class CircleOfLife:
     def display(self):
         print(f'Clock: {self.timestep}')
         world_size = 20
-        top_coord_str = '\t'.join([f'{coord}' for coord in range(len(self.grid))])
-        print(top_coord_str)
+        top_coord_str = ' '.join([f'{coord}' for coord in range(len(self.grid))])
 
         for animal in self.zebras:
             self.grid[animal.y][animal.x] = 'Z'
