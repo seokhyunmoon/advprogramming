@@ -1,8 +1,21 @@
+import random
+from utils import print_TODO
+
 class Animal:
     def __init__(self, x, y):
         self.x = x
         self.y = y
         self.age = 0
+    
+    def get_neighbors(self, grid, target):
+        x, y = self.x, self.y
+        neighbors = []
+        neighbors.append =([x-1, y])
+        neighbors.append =([x+1, y])
+        neighbors.append =([x, y-1])
+        neighbors.append =([x, y+1])
+        return neighbors
+
 
     def move(self, direction = "right"):
         print(f'moving to {direction}.')
@@ -13,18 +26,32 @@ class Animal:
     
 class Zebra(Animal):
 
-    def move(self, occupancy_grid):
-        print('<<< NOT IMPLEMENTED >>>')
+    def move(self, grid):
+        print(f'before: {self.x=}, {self.y=}')
+        neightbors = self.get_neighbors(grid, target='.')
+        chosen_neighbor = random.choice(neightbors)
+        self.x, self.y = chosen_neighbor
+        print(f'after: {self.x=}, {self.y=}')
+
+
 
     def breed(self, x, y):
-        if self.age == 3:
-            Zebra()
-        else:
-            pass
+        print()
 
 class Lion(Animal):
     def move(self, occupancy_grid):
-        print("NOT IMPLEMENTED")
+        neighbors = self.get_neighbors(grid, target='Z')
+        if len(neighbors) > 0:
+            chosen_neighbor = random.choice(target='Z')
+            if len(neighbors) > 0:
+                chosen_neighbor = random.choice(neighbors)
+                self.x, self.y = chosen_neighbor
+                self.hp = 3
+                return
+        
+        neighbors = self.get_neighbors(grid, target='.')
+
+
     
     def breed(self,x, y):
         print("NOT IMPLEMENTED")
