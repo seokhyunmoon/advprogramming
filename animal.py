@@ -24,11 +24,6 @@ class Animal:
                            and neighbor[1] < world_height]
         return neighbors_valid
 
-
-    # def move(self, direction = "right"):
-    #     print(f'moving to {direction}.')
-    #     self.x += 1
-
     def move_to(self, grid, target) -> bool:
         neighbors = self.get_neighbors(grid, target)
         if len(neighbors) > 0:
@@ -46,18 +41,19 @@ class Zebra(Animal):
     def move(self, grid):
         self.move_to(grid, target='.')
 
-    def breed(self, x, y):
-        print()
+    def breed(self, grid):
+        if self.age == 3:
+            return Zebra(0,0)
+        
+        
 
 class Lion(Animal):
     def move(self, grid):
         hunt_is_successful = self.move_to(grid, target='Z')
         if hunt_is_successful:
-            self.hp =3
+            self.hp = 3
         else:
             self.move_to(grid, target='.')
-
-
     
     def breed(self,x, y):
         print("NOT IMPLEMENTED")
