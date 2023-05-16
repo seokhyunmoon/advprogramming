@@ -12,22 +12,31 @@ class Animal:
         world_width = len(grid[0])
         x, y = self.x, self.y
         neighbors = []
-        neighbors.append =([x-1, y])
-        neighbors.append =([x+1, y])
-        neighbors.append =([x, y-1])
-        neighbors.append =([x, y+1])
+        neighbors.append([x-1, y])
+        neighbors.append([x+1, y])
+        neighbors.append([x, y-1])
+        neighbors.append([x, y+1])
         neighbors_valid = [neighbor for neighbor in neighbors
-                           if grid[neighbor[1][neighbor[0]]] == target
+                           if grid[neighbor[1]][neighbor[0]] == target
                            and neighbor[0] >= 0
                            and neighbor[0] < world_width
-                           and neighbor[0] >= 0
-                           and neighbor[0] < world_height]
+                           and neighbor[1] >= 0
+                           and neighbor[1] < world_height]
         return neighbors_valid
 
 
-    def move(self, direction = "right"):
-        print(f'moving to {direction}.')
-        self.x += 1
+    # def move(self, direction = "right"):
+    #     print(f'moving to {direction}.')
+    #     self.x += 1
+
+    def move_to(self, grid, target) -> bool:
+        neighbors = self.get_neighbors(grid, target)
+        if len(neighbors) > 0:
+            chosen_neighbor = random.choice(neighbors)
+            self.x, self.y = chosen_neighbor
+            return True
+        else:
+            return False
 
     def breed(self, x, y):
         return Animal(x, y)
@@ -35,31 +44,18 @@ class Animal:
 class Zebra(Animal):
 
     def move(self, grid):
-        print(f'before: {self.x=}, {self.y=}')
-        neightbors = self.get_neighbors(grid, target='.')
-        if len(neightbors) > 0:
-            chosen_neighbor = random.choice(neightbors)
-            self.x, self.y = chosen_neighbor
-        print(f'after: {self.x=}, {self.y=}')
+        self.move_to(grid, target='.')
 
     def breed(self, x, y):
         print()
 
 class Lion(Animal):
     def move(self, grid):
-        neighbors = self.get_neighbors(grid, target='Z')
-        if len(neighbors) > 0:
-            chosen_neighbor = random.choice(target='Z')
-            if len(neighbors) > 0:
-                chosen_neighbor = random.choice(neighbors)
-                self.x, self.y = chosen_neighbor
-                self.hp = 3
-                return
-        
-        neighbors = self.get_neighbors(grid, target='.')
-        if len(neighbors) > 0:
-            chosen_neighbor = random.choice(neighbors)
-            self.x, self.y = chosen_neighbor
+        hunt_is_successful = self.move_to(grid, target='Z')
+        if hunt_is_successful:
+            self.hp =3
+        else:
+            self.move_to(grid, target='.')
 
 
     
