@@ -47,10 +47,20 @@ class CircleOfLife:
     
     def step_breed(self):
         print_TODO('step_breed()')
-        for animal in self.zebras + self.lions:
-            print_TODO('get empty neighbor')
-            x, y = 0, 0
-            animal.breed(x, y)
+        # for animal in self.zebras + self.lions:
+        #     print_TODO('get empty neighbor')
+        #     x, y = 0, 0
+        #     animal.breed(x, y)
+
+        # for zebra in self.zebras:
+        #     zebra.breed(self.grid)
+        # for lion in self.lions:
+        #     lion.breed(self.grid)
+    
+    # def step_age(self):
+    #     for zebra in self.zebras:
+    #         zebra.age += 1
+
     
     def run(self, num_timesteps=100):
         self.display()
@@ -58,9 +68,14 @@ class CircleOfLife:
             self.timestep +=1
             self.step_move()
             self.display()
+
+            #동물 나이 +1
+            # self.step_age()
+            # self.display()
+
             self.step_breed()
             self.display()
 
 if __name__ == '__main__':
     safari = CircleOfLife(20, 5, 2)
-    safari.run(2)
+    safari.run(10)
