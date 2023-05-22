@@ -22,7 +22,7 @@ class Animal:
                            and neighbor[0] < world_width
                            and neighbor[1] >= 0
                            and neighbor[1] < world_height
-                           and str(grid[neighbor[1][neighbor[0] == target]])]
+                           and str(grid[neighbor[1]][neighbor[0]]) == target]
         return neighbors_valid
 
     def move_to(self, grid, target) -> bool:
