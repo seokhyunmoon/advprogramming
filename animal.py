@@ -63,9 +63,9 @@ class Lion(Animal):
         hunt_is_successful = self.move_to(grid, target='Z')
         if hunt_is_successful:
             self.hp = 3
-            grid[self.y][self.x] = 'L'
         else:
             self.move_to(grid, target='.')
+            self.hp -= 1
     
     def breed(self,x, y):
         print("NOT IMPLEMENTED")
