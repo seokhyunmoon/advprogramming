@@ -42,8 +42,7 @@ class Zebra(Animal):
         self.move_to(grid, target='.')
 
     def breed(self, grid):
-        if self.age == 3:
-            return Zebra(0,0)
+        print_TODO("Not Implemented")
         
         
 
