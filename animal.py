@@ -10,7 +10,7 @@ class Animal:
     def get_neighbors(self, grid, target):
         world_height = len(grid)
         world_width = len(grid[0])
-        x, y = self.x, self.y
+        y, x = self.y, self.x
         neighbors = []
         neighbors.append([y - 1, x])
         neighbors.append([y + 1, x])
@@ -30,6 +30,7 @@ class Animal:
             grid[self.y][self.x] = Empty(self.y, self.x)
             chosen_neighbor = random.choice(neighbors)
             self.y, self.x = chosen_neighbor
+            grid[self.y][self.x].hp = 0
             grid[self.y][self.x] = self
             return True
         else:
