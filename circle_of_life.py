@@ -10,8 +10,6 @@ class CircleOfLife:
         self.grid = [[Empty(y, x) for y in range(self.world_size)]
                                   for x in range(self.world_size)]
         zebra_coords, lion_coords = self.get_random_coords(num_zebras, num_lions)
-        # self.zebras = [Zebra(0, 0) for _ in range(zebra_coords)]
-        # self.lions = [Lion(0, 0) for _ in range(lion_coords)]
         for y, x in zebra_coords:
             self.grid[y][x] = Zebra(y,x)
         for y, x in lion_coords:
@@ -31,21 +29,11 @@ class CircleOfLife:
         all_coords= list(set(all_coords) - set(zebra_coords))
         lion_coords = random.sample(all_coords, num_lions)
         return zebra_coords, lion_coords
-    
-    # def update_grid(self):
-    #     self.grid = [['.' for _ in range(self.world_size)]
-    #                       for _ in range(self.world_size)]
-    #     for animal in self.zebras:
-    #         self.grid[animal.y][animal.x] = 'Z'
-    #     for animal in self.lions:
-    #         self.grid[animal.y][animal.x] = 'L'
 
     def display(self):
         print(f'Clock: {self.timestep}')
         top_coord_str = ' '.join([f'{coord}' for coord in range(len(self.grid))])
         print('   ' + top_coord_str)
-        # for row, line in enumerate(self.grid):
-        #     print(f'{ row + 1:3} ' + ' '.join(f'{cell:3}' for cell in line))
         for row, line in enumerate(self.grid):
             buffer = [str(animal) for animal in line]
             print(f'{row:2} ' + ' '.join(buffer))
@@ -55,12 +43,6 @@ class CircleOfLife:
 
     def step_move(self):
         print_TODO('step_move()')
-        # for zebra in self.zebras:
-        #     zebra.move(self.grid)
-        #     self.update_grid()
-        # for lion in self.lions:
-        #     lion.move(self.grid)
-        #     self.update_grid
         animals = [animal in animals for line in self.grid for animal in line
                    if not isinstance(animal, Empty)]
         for animal in animals:
