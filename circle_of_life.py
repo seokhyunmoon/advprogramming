@@ -47,9 +47,17 @@ class CircleOfLife:
         for animal in animals:
             if animal.hp != 0:
                 animal.move(self.grid)
+            else:
+                Lion.starve(self.grid)
     
     def step_breed(self):
         print_TODO('step_breed()')
+
+    def clear_bodies(self):
+        for y, line in enumerate(self.grid):
+            for x, animal in enumerate(line):
+                if animal.hp == 0:
+                    self.grid[y][x] = Empty(y,x)
 
     def run(self, num_timesteps=100):
         self.display()
@@ -57,9 +65,9 @@ class CircleOfLife:
             self.timestep +=1
             self.step_move()
             self.display()
-
             self.step_breed()
             self.display()
+            self.clear_bodies()
 
 if __name__ == '__main__':
     safari = CircleOfLife(20, 5, 2)

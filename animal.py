@@ -31,7 +31,7 @@ class Animal:
             grid[self.y][self.x] = Empty(self.y, self.x)
             chosen_neighbor = random.choice(neighbors)
             self.y, self.x = chosen_neighbor
-            grid[self.y][self.x].hp = 0
+            grid[self.y][self.x].hp = 0 #kill
             grid[self.y][self.x] = self
             return True
         else:
@@ -54,8 +54,6 @@ class Zebra(Animal):
     def breed(self, grid):
         print_TODO("Not Implemented")
         
-        
-
 class Lion(Animal):
     def __str__(self):
         return 'L'
@@ -69,9 +67,6 @@ class Lion(Animal):
             self.hp -= 1
     
     def breed(self,x, y):
-        print("NOT IMPLEMENTED")
-    
-    def starve(self):
         print("NOT IMPLEMENTED")
 
 if __name__ == "__main__":
