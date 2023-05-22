@@ -47,8 +47,6 @@ class CircleOfLife:
         for animal in animals:
             if animal.hp != 0:
                 animal.move(self.grid)
-            else:
-                Lion.starve(self.grid)
     
     def step_breed(self):
         print_TODO('step_breed()')
