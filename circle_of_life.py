@@ -14,7 +14,6 @@ class CircleOfLife:
             self.grid[y][x] = Zebra(y,x)
         for y, x in lion_coords:
             self.grid[y][x] = Lion(y,x)
-        # self.update_grid()
         self.timestep = 0
         print_TODO('get random empty coordinates')
         print('Welcome to AIE Safari!')
