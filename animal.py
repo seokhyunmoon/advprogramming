@@ -12,16 +12,16 @@ class Animal:
         world_width = len(grid[0])
         x, y = self.x, self.y
         neighbors = []
-        neighbors.append([x-1, y])
-        neighbors.append([x+1, y])
-        neighbors.append([x, y-1])
-        neighbors.append([x, y+1])
+        neighbors.append([x - 1, y])
+        neighbors.append([x + 1, y])
+        neighbors.append([x, y - 1])
+        neighbors.append([x, y + 1])
         neighbors_valid = [neighbor for neighbor in neighbors
-                           if grid[neighbor[1]][neighbor[0]] == target
-                           and neighbor[0] >= 0
+                           if neighbor[0] >= 0
                            and neighbor[0] < world_width
                            and neighbor[1] >= 0
-                           and neighbor[1] < world_height]
+                           and neighbor[1] < world_height
+                           and grid[neighbor[1][neighbor[0] == target]]]
         return neighbors_valid
 
     def move_to(self, grid, target) -> bool:
@@ -37,7 +37,9 @@ class Animal:
         return Animal(x, y)
     
 class Zebra(Animal):
-
+    def __str__(self):
+        return 'Z'
+    
     def move(self, grid):
         self.move_to(grid, target='.')
 
@@ -52,6 +54,7 @@ class Lion(Animal):
         hunt_is_successful = self.move_to(grid, target='Z')
         if hunt_is_successful:
             self.hp = 3
+            grid[self.y][self.x] = 'L'
         else:
             self.move_to(grid, target='.')
     
