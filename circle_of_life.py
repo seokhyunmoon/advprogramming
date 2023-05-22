@@ -1,4 +1,4 @@
-from animal import Zebra, Lion
+from animal import Empty, Zebra, Lion
 import random
 from utils import print_TODO
 
@@ -7,9 +7,13 @@ class CircleOfLife:
     def __init__(self, world_size, num_zebras, num_lions):
         self.world_size = world_size
         random.seed(0)
-        zebra_coord, lion_coords = self.get_random_coords(num_zebras, num_lions)
-        self.zebras = [Zebra(0, 0) for _ in range(num_zebras)]
-        self.lions = [Lion(0, 0) for _ in range(num_lions)]
+        zebra_coords, lion_coords = self.get_random_coords(num_zebras, num_lions)
+        # self.zebras = [Zebra(0, 0) for _ in range(zebra_coords)]
+        # self.lions = [Lion(0, 0) for _ in range(lion_coords)]
+        for y, x in zebra_coords:
+            self.grid = Zebra(y,x)
+        for y, x in lion_coords:
+            self.grid = Lion(y,x)
         self.update_grid()
         self.timestep = 0
         print_TODO('get random empty coordinates')
@@ -38,20 +42,27 @@ class CircleOfLife:
         print(f'Clock: {self.timestep}')
         top_coord_str = ' '.join([f'{coord + 1:3}' for coord in range(len(self.grid))])
         print('   ' + top_coord_str)
+        # for row, line in enumerate(self.grid):
+        #     print(f'{ row + 1:3} ' + ' '.join(f'{cell:3}' for cell in line))
         for row, line in enumerate(self.grid):
-            print(f'{ row + 1:3} ' + ' '.join(f'{cell:3}' for cell in line))
+            buffer = [str(animal) for animal in line]
+            print(f'{row:2} ' + ' '.join(buffer))
         key = input('enter [q] to quit:')
         if key == 'q':
             exit()
 
     def step_move(self):
         print_TODO('step_move()')
-        for zebra in self.zebras:
-            zebra.move(self.grid)
-            self.update_grid()
-        for lion in self.lions:
-            lion.move(self.grid)
-            self.update_grid
+        # for zebra in self.zebras:
+        #     zebra.move(self.grid)
+        #     self.update_grid()
+        # for lion in self.lions:
+        #     lion.move(self.grid)
+        #     self.update_grid
+        animals = [animal in animals for line in self.grid for animal in line
+                   if not isinstance(animal, Empty)]
+        for animal in animals:
+            animal.move(self.grid)
     
     def step_breed(self):
         print_TODO('step_breed()')
