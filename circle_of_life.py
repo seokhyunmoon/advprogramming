@@ -7,40 +7,42 @@ class CircleOfLife:
     def __init__(self, world_size, num_zebras, num_lions):
         self.world_size = world_size
         random.seed(0)
+        self.grid = [[Empty(y, x) for y in range(self.world_size)]
+                                  for x in range(self.world_size)]
         zebra_coords, lion_coords = self.get_random_coords(num_zebras, num_lions)
         # self.zebras = [Zebra(0, 0) for _ in range(zebra_coords)]
         # self.lions = [Lion(0, 0) for _ in range(lion_coords)]
         for y, x in zebra_coords:
-            self.grid = Zebra(y,x)
+            self.grid[y][x] = Zebra(y,x)
         for y, x in lion_coords:
-            self.grid = Lion(y,x)
-        self.update_grid()
+            self.grid[y][x] = Lion(y,x)
+        # self.update_grid()
         self.timestep = 0
         print_TODO('get random empty coordinates')
         print('Welcome to AIE Safari!')
         print(f'\tworld size = {world_size}')
-        print(f'\tnumber of zebras = {len(self.zebras)}')
-        print(f'\tnumber of lions = {len(self.lions)}')
+        print(f'\tnumber of zebras = {num_zebras}')
+        print(f'\tnumber of lions = {num_lions}')
     
     def get_random_coords(self, num_zebras, num_lions):
-        all_coords = [(x,y) for y in range(self.world_size)
+        all_coords = [(y,x) for y in range(self.world_size)
                       for x in range(self.world_size)]
         zebra_coords = random.sample(all_coords, num_zebras)
         all_coords= list(set(all_coords) - set(zebra_coords))
         lion_coords = random.sample(all_coords, num_lions)
         return zebra_coords, lion_coords
     
-    def update_grid(self):
-        self.grid = [['.' for _ in range(self.world_size)]
-                          for _ in range(self.world_size)]
-        for animal in self.zebras:
-            self.grid[animal.y][animal.x] = 'Z'
-        for animal in self.lions:
-            self.grid[animal.y][animal.x] = 'L'
+    # def update_grid(self):
+    #     self.grid = [['.' for _ in range(self.world_size)]
+    #                       for _ in range(self.world_size)]
+    #     for animal in self.zebras:
+    #         self.grid[animal.y][animal.x] = 'Z'
+    #     for animal in self.lions:
+    #         self.grid[animal.y][animal.x] = 'L'
 
     def display(self):
         print(f'Clock: {self.timestep}')
-        top_coord_str = ' '.join([f'{coord + 1:3}' for coord in range(len(self.grid))])
+        top_coord_str = ' '.join([f'{coord}' for coord in range(len(self.grid))])
         print('   ' + top_coord_str)
         # for row, line in enumerate(self.grid):
         #     print(f'{ row + 1:3} ' + ' '.join(f'{cell:3}' for cell in line))
