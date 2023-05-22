@@ -6,6 +6,7 @@ class Animal:
         self.x = x
         self.y = y
         self.age = 0
+        self.hp = 3
     
     def get_neighbors(self, grid, target):
         world_height = len(grid)
