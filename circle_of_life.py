@@ -42,7 +42,7 @@ class CircleOfLife:
 
     def step_move(self):
         print_TODO('step_move()')
-        animals = [animal in animals for line in self.grid for animal in line
+        animals = [animal for line in self.grid for animal in line
                    if not isinstance(animal, Empty)]
         for animal in animals:
             if animal.hp != 0:
