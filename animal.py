@@ -41,6 +41,7 @@ class Animal:
         child = self.__class__(self.y, self.x)
         child.move_to(grid, target='.')
         grid[self.y][self.x] = self
+
 class Empty(Animal):
     def __str__(self):
         return '.' 
@@ -51,9 +52,6 @@ class Zebra(Animal):
     
     def move(self, grid):
         self.move_to(grid, target='.')
-
-    def breed(self, grid):
-        print_TODO("Not Implemented")
 
     def is_ready_to_breed(self):
         return self.age != 0 and self.age % 3 == 0
@@ -69,10 +67,6 @@ class Lion(Animal):
         else:
             self.move_to(grid, target='.')
             self.hp -= 1
-    
-    def breed(self, grid):
-        print_TODO("Not Implemented")
-
     
     def is_ready_to_breed(self):
         return self.age != 0 and self.age % 8 == 0
