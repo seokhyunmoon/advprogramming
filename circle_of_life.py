@@ -50,12 +50,24 @@ class CircleOfLife:
     
     def step_breed(self):
         print_TODO('step_breed()')
+        animals = [animal for line in self.grid for animal in line
+                   if not isinstance(animal, Empty)]
+        for animal in animals:
+            animal.breed(self.grid)
 
-    def clear_bodies(self):
+    # def clear_bodies(self):
+    #     for y, line in enumerate(self.grid):
+    #         for x, animal in enumerate(line):
+    #             if animal.hp == 0:
+    #                 self.grid[y][x] = Empty(y,x)
+    
+    def housekeeping(self):
         for y, line in enumerate(self.grid):
             for x, animal in enumerate(line):
                 if animal.hp == 0:
                     self.grid[y][x] = Empty(y,x)
+                else:
+                    self.grid[y][x].age += 1
 
     def run(self, num_timesteps=100):
         self.display()
@@ -66,6 +78,7 @@ class CircleOfLife:
             self.step_breed()
             self.display()
             self.clear_bodies()
+            self.display()
 
 if __name__ == '__main__':
     safari = CircleOfLife(20, 5, 2)
