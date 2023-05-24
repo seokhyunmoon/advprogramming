@@ -6,7 +6,7 @@ from utils import print_TODO
 class CircleOfLife:
 
     def __init__(self, world_size, num_zebras, num_lions):
-        self.world_size = world_size
+        self.world_size = world_size    
         self.grid = [[Empty(y, x) for y in range(self.world_size)]
                                   for x in range(self.world_size)]
         zebra_coords, lion_coords = self.get_random_coords(num_zebras, num_lions)
@@ -82,7 +82,7 @@ class CircleOfLife:
             self.display()
             self.step_breed()
             self.display()
-            self.clear_bodies()
+            self.housekeeping()
             self.display()
 
 if __name__ == '__main__':
