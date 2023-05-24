@@ -37,8 +37,8 @@ class Animal:
         else:
             return False
 
-    def breed(self, x, y):
-        return Animal(x, y)
+    def breed(self, grid):
+        print_TODO("Not Implemented")
 
 class Empty(Animal):
     def __str__(self):
@@ -66,8 +66,12 @@ class Lion(Animal):
             self.move_to(grid, target='.')
             self.hp -= 1
     
-    def breed(self,x, y):
-        print("NOT IMPLEMENTED")
+    def breed(self, grid):
+        print_TODO("Not Implemented")
+        child = self.__class__(self.y, self.x)
+        child.move_to(grid, target='.')
+        grid[self.y][self.x] = self
+
 
 if __name__ == "__main__":
     print("hi")
