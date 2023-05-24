@@ -1,12 +1,12 @@
 from animal import Empty, Zebra, Lion
 import random
+import os
 from utils import print_TODO
 
 class CircleOfLife:
 
     def __init__(self, world_size, num_zebras, num_lions):
         self.world_size = world_size
-        random.seed(0)
         self.grid = [[Empty(y, x) for y in range(self.world_size)]
                                   for x in range(self.world_size)]
         zebra_coords, lion_coords = self.get_random_coords(num_zebras, num_lions)
@@ -30,6 +30,11 @@ class CircleOfLife:
         return zebra_coords, lion_coords
 
     def display(self):
+        if os.name == 'nt':
+            os.system('cls')
+        else:
+            os.system('clear')
+
         print(f'Clock: {self.timestep}')
         top_coord_str = ' '.join([f'{coord}' for coord in range(len(self.grid))])
         print('   ' + top_coord_str)
@@ -51,7 +56,7 @@ class CircleOfLife:
     def step_breed(self):
         print_TODO('step_breed()')
         animals = [animal for line in self.grid for animal in line
-                   if not isinstance(animal, Empty)]
+                   if not isinstance(animal, Empty) and animal.is_ready_to_breed()]
         for animal in animals:
             animal.breed(self.grid)
 
