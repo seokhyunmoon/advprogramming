@@ -46,7 +46,6 @@ class CircleOfLife:
             exit()
 
     def step_move(self):
-        print_TODO('step_move()')
         animals = [animal for line in self.grid for animal in line
                    if not isinstance(animal, Empty)]
         for animal in animals:
@@ -54,7 +53,6 @@ class CircleOfLife:
                 animal.move(self.grid)
     
     def step_breed(self):
-        print_TODO('step_breed()')
         animals = [animal for line in self.grid for animal in line
                    if not isinstance(animal, Empty) and animal.is_ready_to_breed()]
         for animal in animals:
