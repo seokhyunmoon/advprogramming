@@ -38,8 +38,9 @@ class Animal:
             return False
 
     def breed(self, grid):
-        print_TODO("Not Implemented")
-
+        child = self.__class__(self.y, self.x)
+        child.move_to(grid, target='.')
+        grid[self.y][self.x] = self
 class Empty(Animal):
     def __str__(self):
         return '.' 
@@ -53,6 +54,9 @@ class Zebra(Animal):
 
     def breed(self, grid):
         print_TODO("Not Implemented")
+
+    def is_ready_to_breed(self):
+        return self.age != 0 and self.age % 3 == 0
         
 class Lion(Animal):
     def __str__(self):
@@ -68,9 +72,10 @@ class Lion(Animal):
     
     def breed(self, grid):
         print_TODO("Not Implemented")
-        child = self.__class__(self.y, self.x)
-        child.move_to(grid, target='.')
-        grid[self.y][self.x] = self
+
+    
+    def is_ready_to_breed(self):
+        return self.age != 0 and self.age % 8 == 0
 
 
 if __name__ == "__main__":
