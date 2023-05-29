@@ -82,5 +82,5 @@ class CircleOfLife:
             self.housekeeping()
 
 if __name__ == '__main__':
-    safari = CircleOfLife(10, 10, 10)
-    safari.run(100)
+    safari = CircleOfLife(20, 100, 5)
+    safari.run(100000)
