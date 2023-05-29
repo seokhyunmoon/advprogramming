@@ -84,5 +84,5 @@ class CircleOfLife:
             self.display()
 
 if __name__ == '__main__':
-    safari = CircleOfLife(20, 5, 2)
+    safari = CircleOfLife(20, 10, 5)
     safari.run(10)
