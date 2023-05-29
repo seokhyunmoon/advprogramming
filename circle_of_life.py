@@ -15,7 +15,6 @@ class CircleOfLife:
         for y, x in lion_coords:
             self.grid[y][x] = Lion(y,x)
         self.timestep = 0
-        print_TODO('get random empty coordinates')
         print('Welcome to AIE Safari!')
         print(f'\tworld size = {world_size}')
         print(f'\tnumber of zebras = {num_zebras}')
@@ -81,8 +80,7 @@ class CircleOfLife:
             self.step_breed()
             self.display()
             self.housekeeping()
-            self.display()
 
 if __name__ == '__main__':
-    safari = CircleOfLife(20, 10, 5)
-    safari.run(10)
+    safari = CircleOfLife(10, 10, 10)
+    safari.run(100)
