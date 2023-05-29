@@ -31,7 +31,7 @@ class Animal:
             grid[self.y][self.x] = Empty(self.y, self.x)
             chosen_neighbor = random.choice(neighbors)
             self.y, self.x = chosen_neighbor
-            grid[self.y][self.x].hp = 0 #kill
+            grid[self.y][self.x].hp = 0 
             grid[self.y][self.x] = self
             return True
         else:
@@ -61,16 +61,16 @@ class Lion(Animal):
         return 'L'
     
     def move(self, grid):
-        buffer = f'{self.y} {self.x}'
+        # buffer = f'{self.y} {self.x}'
         hunt_is_successful = self.move_to(grid, target='Z')
         if hunt_is_successful:
             self.hp = 3
-            buffer += f' -> (ate) {self.y} {self.x}'
+            # buffer += f' -> (ate) {self.y} {self.x}'
         else:
             self.move_to(grid, target='.')
             self.hp -= 1
-            buffer += f' -> (empty) {self.y} {self.x}'
-        print(buffer)
+            # buffer += f' -> (empty) {self.y} {self.x}'
+        # print(buffer)
     
     def is_ready_to_breed(self):
         return self.age != 0 and self.age % 8 == 0
